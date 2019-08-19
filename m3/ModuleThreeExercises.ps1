@@ -29,3 +29,23 @@ Get-AzRoleDefinition | Where-Object {$_.IsCustom -eq $True} | Format-Table Name,
 
 #Create a new custom role definition for Key Vault
 $subId = (Get-AzSubscription -SubscriptionName SUB_NAME).Id
+
+$roleInfo = Get-Content .\custom_role.json
+
+$roleInfo -replace "SUBSCRIPTION_ID",$subId > updated_role.json
+
+$role = New-AzRoleDefinition -InputFile .\updated_role.json
+
+#Assign the custom role to an existing user
+$user = Get-AzADUser -UserPrincipalName "USER_PRINCIPAL_NAME"
+
+$assignmentInfo = @{
+    ObjectId = $user.Id
+    Scope = $keyVault.ResourceId
+    RoleDefinitionId = $role.Id
+}
+
+New-AzRoleAssignment @assignmentInfo
+
+Get-AzRoleAssignment -Scope $keyVault.ResourceId
+
