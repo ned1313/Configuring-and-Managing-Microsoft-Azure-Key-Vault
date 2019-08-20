@@ -1,0 +1,5 @@
+# cert files
+*.pem
+*.pfx
+*.csr
+*.srl

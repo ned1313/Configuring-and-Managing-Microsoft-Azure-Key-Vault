@@ -35,7 +35,7 @@ $appServiceParameters = @{
 $appServiceDeploymentParameters = @{
     Name = "AppServiceDeploy"
     ResourceGroupName = $appServiceGroup.ResourceGroupName
-    TemplateFile = ".\azuredeploy.json"
+    TemplateFile = ".\AppService.json"
     TemplateParameterObject = $appServiceParameters
     Mode = "Incremental"
 }
