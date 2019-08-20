@@ -50,7 +50,7 @@
         "nsgName": "winNSG",
         "pipName": "winVMpip",
         "scriptFileName": "InitializeDisks.ps1",
-        "scriptPath": "[concat('https://raw.githubusercontent.com/ned1313/Configuring-and-Managing-Azure-Key-Vault/', parameters('branch'), '/m4/')]",
+        "scriptPath": "[concat('https://raw.githubusercontent.com/ned1313/Configuring-and-Managing-Microsoft-Azure-Key-Vault/', parameters('branch'), '/m4/')]",
         "fileUri": "[concat(variables('scriptPath'), variables('scriptFileName'))]"
     },
     "resources": [

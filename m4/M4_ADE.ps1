@@ -34,8 +34,6 @@ $vmRG = New-AzResourceGroup -Name $ResourceGroupName -Location $Location
 #Deploy the #Windows VM template
 New-AzResourceGroupDeployment @WinVMDeploymentParameters
 
-#Log into the VM and initialize/format the data disk
-
 #Now provision a Key Vault if you don't already have one
 
 #Create a new Key Vault
