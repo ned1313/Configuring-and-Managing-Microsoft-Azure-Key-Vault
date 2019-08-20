@@ -19,7 +19,7 @@ $keyVaultParameters = @{
     Name = "$prefix-key-vault-$id"
     ResourceGroupName = $keyVaultGroup.ResourceGroupName
     Location = $location
-    Sku = "Premium"
+    Sku = "Standard"
 }
 
 $keyVault = New-AzKeyVault @keyVaultParameters
@@ -53,7 +53,7 @@ $accessPolicySettings = @{
 Set-AzKeyVaultAccessPolicy @accessPolicySettings
 
 #Store a secret in Key Vault for App Service to retrieve
-$secretValue =  ConvertTo-SecureString -String "GlobomanticsSuperSecret" -AsPlainText -Force
+$secretValue =  ConvertTo-SecureString -String "ContosoSuperSecret" -AsPlainText -Force
 Set-AzKeyVaultSecret -VaultName $keyVault.VaultName -Name "webappsecret" -SecretValue $secretValue
 
 Write-Output $keyVault.VaultName
