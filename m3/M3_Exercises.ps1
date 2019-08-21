@@ -28,7 +28,7 @@ $keyVault = New-AzKeyVault @keyVaultParameters
 Get-AzRoleDefinition | Where-Object {$_.IsCustom -eq $True} | Format-Table Name, IsCustom
 
 #Create a new custom role definition for Key Vault
-$subId = (Get-AzSubscription -SubscriptionName SUB_NAME).Id
+$subId = (Get-AzContext).Subscription.Id
 
 $roleInfo = Get-Content .\custom_role.json
 

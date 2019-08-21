@@ -63,5 +63,7 @@ $managedStorageAccount = @{
 
 Add-AzKeyVaultManagedStorageAccount @managedStorageAccount
 
+Get-AzKeyVaultManagedStorageAccount -VaultName $keyVault.VaultName
+
 Update-AzKeyVaultManagedStorageAccountKey -VaultName $keyVault.VaultName -AccountName $storageAccount.StorageAccountName -KeyName "key1"
 
