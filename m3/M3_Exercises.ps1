@@ -24,6 +24,9 @@ $keyVaultParameters = @{
 
 $keyVault = New-AzKeyVault @keyVaultParameters
 
+#If you already have a Key Vault
+$keyVault = Get-AzKeyVault -VaultName "VAULT_NAME" -ResourceGroupName "RESOURCE_GROUP_NAME"
+
 #Get the existing custom roles
 Get-AzRoleDefinition | Where-Object {$_.IsCustom -eq $True} | Format-Table Name, IsCustom
 

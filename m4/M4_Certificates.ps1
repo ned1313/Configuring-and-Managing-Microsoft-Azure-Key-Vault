@@ -24,6 +24,9 @@ $keyVaultParameters = @{
 
 $keyVault = New-AzKeyVault @keyVaultParameters
 
+#If you already have a Key Vault
+$keyVault = Get-AzKeyVault -VaultName "VAULT_NAME" -ResourceGroupName "RESOURCE_GROUP_NAME"
+
 $policyParameters = @{
     SecretContentType = "application/x-pkcs12"
     SubjectName = "CN=www.Contoso-ned.xyz"

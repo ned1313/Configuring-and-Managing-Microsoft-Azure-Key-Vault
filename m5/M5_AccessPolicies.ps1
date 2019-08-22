@@ -24,6 +24,9 @@ $keyVaultParameters = @{
 
 $keyVault = New-AzKeyVault @keyVaultParameters
 
+#If you already have a Key Vault
+$keyVault = Get-AzKeyVault -VaultName "VAULT_NAME" -ResourceGroupName "RESOURCE_GROUP_NAME"
+
 #Create a storage account for logs and metrics
 $storageAccountParameters = @{
     ResourceGroupName = $keyVault.ResourceGroupName
