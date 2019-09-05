@@ -47,16 +47,29 @@ $keyVaultParameters = @{
 }
 $keyVault = New-AzKeyVault @keyVaultParameters
 
+#Create a Key Encrypting Key
+$kekParameters = @{
+    VaultName = $keyVault.VaultName
+    Name = "$prefix-kek-$id"
+    Destination = "Software"
+
+}
+
+$kek = Add-AzKeyVaultKey @kekParameters
+
 #Set the disk encryption settings for the Windows VM
 $DiskEncryptionParameters = @{
     ResourceGroupName = $vmRG.ResourceGroupName
     VMname = $VMName
     DiskEncryptionKeyVaultUrl = $keyVault.VaultUri
     DiskEncryptionKeyVaultId = $keyVault.ResourceId
+    KeyEncryptionKeyUrl = $kek.Key.Kid
+    KeyEncryptionKeyVaultId = $keyVault.ResourceId
     VolumeType = "All"
 }
 
 Set-AzVMDiskEncryptionExtension @DiskEncryptionParameters
+
 
 #Check the encryption settings once the command completes
 Get-AzVmDiskEncryptionStatus -ResourceGroupName $vmRG.ResourceGroupName -VMName $VMName
