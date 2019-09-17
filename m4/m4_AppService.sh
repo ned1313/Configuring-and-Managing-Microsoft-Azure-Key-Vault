@@ -5,7 +5,7 @@ az account set --subscription "SUB_NAME"
 id=$(((RANDOM%9999+1)))
 prefix="cmk"
 location="eastus"
-resource_group="$prefix-windows-vm-$id"
+resource_group="$prefix-key-vault-$id"
 key_vault_name="$prefix-key-vault-$id"
 app_resource_group="$prefix-app-service-$id"
 

@@ -5,7 +5,7 @@ az account set --subscription "SUB_NAME"
 id=$(((RANDOM%9999+1)))
 prefix="cmk"
 location="eastus"
-resource_group="$prefix-windows-vm-$id"
+resource_group="$prefix-key-vault-$id"
 key_vault_name="$prefix-key-vault-$id"
 
 #Create an Azure Key Vault
@@ -17,22 +17,8 @@ az keyvault create -n $key_vault_name -g $resource_group \
 resource_group="existing_key_vault_resource_group_name"
 key_vault_name="existing_key_vault_name"
 
-#Create JSON policy doc for certificate
-policy=$(cat <<EOF
-{
-  "issuerParameters": {
-      "name": "Unknown"
-  },
-  "secretProperties": {
-      "contentType": "application/x-pkcs12"
-  },
-  "subject": "CN=www.Contoso-ned.xyz",
-  "validityInMonths": 6
-}
-EOF
-)
-
 #Create the certificate request
+#Edit the CertPolicy doc as you would like
 az keyvault certificate create --vault-name $key_vault_name \
   --name www-cert --policy @CertPolicy.json
 
