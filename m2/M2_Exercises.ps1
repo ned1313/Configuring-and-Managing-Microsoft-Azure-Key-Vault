@@ -27,7 +27,7 @@ $keyVault = New-AzKeyVault @keyVaultParameters
 #Grant yourself access to the Key Vault
 # Give your user principal access to all storage account permissions, on your Key Vault instance
 $accessPolicy = @{
-    VaultName = $keyVault.Name
+    VaultName = $keyVault.VaultName
     UserPrincipalName = "USER_PRINCIPAL_NAME"
     PermissionsToStorage = ("get","list","listsas","delete","set","update","regeneratekey","recover","backup","restore","purge")
 }
